@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WarungHub – Hubungkan Toko, Produk, dan Peluang UMKM!",
-  description: "Platform marketplace terpercaya yang menghubungkan UMKM Indonesia dengan peluang pasar yang lebih luas.",
+  title: "WarungHub",
 };
 
 export default function RootLayout({
