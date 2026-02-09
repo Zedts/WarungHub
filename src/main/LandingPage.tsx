@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { Icon } from "@iconify/react";
+import LandingNavbar from "../components/navigation/LandingNavbar";
 
 export default function LandingPage() {
   return (
@@ -15,39 +17,7 @@ export default function LandingPage() {
         }}
       />
 
-      <nav className="fixed top-0 w-full z-50 glass border-b transition-all duration-300 border-gray-200/50">
-        <div className="flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
-          <a href="#" className="flex items-center justify-center h-24">
-            <img
-              src="/Full-Logo.png"
-              alt="WarungHub"
-              className="h-full w-auto object-contain"
-            />
-          </a>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <a href="#benefits" className="hover:text-[#4A7043] transition-colors">
-              Features
-            </a>
-            <a href="#marketplace" className="hover:text-[#4A7043] transition-colors">
-              Marketplace
-            </a>
-            <a href="#how-it-works" className="hover:text-[#4A7043] transition-colors">
-              How It Works
-            </a>
-          </div>
-          <div className="flex items-center gap-3">
-            <a href="#" className="text-sm font-medium text-[#4A7043] hidden sm:block">
-              Sign In
-            </a>
-            <a
-              href="#"
-              className="bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] text-sm font-semibold px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-[#4A7043]/30 hover:-translate-y-0.5 transition-all duration-300 text-white"
-            >
-              Get Started
-            </a>
-          </div>
-        </div>
-      </nav>
+      <LandingNavbar />
 
       <section className="overflow-hidden pt-32 pb-20 relative">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -72,10 +42,13 @@ export default function LandingPage() {
               globally.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="shadow-[#4A7043]/20 hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 transition-all flex text-sm font-semibold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] rounded-xl pt-4 pr-8 pb-4 pl-8 shadow-xl gap-x-2 gap-y-2 items-center justify-center">
+              <Link
+                href="/login?mode=register"
+                className="shadow-[#4A7043]/20 hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 transition-all flex text-sm font-semibold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] rounded-xl pt-4 pr-8 pb-4 pl-8 shadow-xl gap-x-2 gap-y-2 items-center justify-center"
+              >
                 <span>Start Scaling Now</span>
                 <Icon icon="solar:arrow-right-linear" width={20} />
-              </button>
+              </Link>
               <button className="hover:text-[#4A7043] transition-all flex hover:bg-gray-50 hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 text-sm font-semibold text-gray-600 bg-white border-gray-200 border rounded-xl pt-4 pr-8 pb-4 pl-8 gap-x-2 gap-y-2 items-center justify-center">
                 <Icon icon="solar:play-circle-linear" width={20} />
                 <span>View Demo</span>
@@ -434,9 +407,12 @@ export default function LandingPage() {
             Join thousands of forward-thinking businesses on WarungHub.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 transition-all text-base font-bold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] rounded-xl pt-5 pr-10 pb-5 pl-10">
+            <Link
+              href="/login?mode=register"
+              className="hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 transition-all text-base font-bold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] rounded-xl pt-5 pr-10 pb-5 pl-10 text-center"
+            >
               Sign Up Now – Free!
-            </button>
+            </Link>
             <button className="hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 transition-all flex gap-2 hover:bg-gray-50 text-base font-bold text-gray-800 bg-white border-gray-200 border rounded-xl pt-5 pr-10 pb-5 pl-10 gap-x-2 gap-y-2 items-center justify-center">
               <Icon icon="solar:chat-round-dots-linear" width={20} />
               Chat with Our Team
