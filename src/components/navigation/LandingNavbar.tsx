@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const NAV_ITEMS = [
@@ -11,6 +11,16 @@ const NAV_ITEMS = [
 
 export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -21,22 +31,36 @@ export default function LandingNavbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass border-b transition-all duration-300 border-gray-200/50">
+    <nav
+      className={`fixed top-0 w-full z-50 border-b transition-all duration-500 ease-in-out ${
+        isScrolled
+          ? "bg-neutral-900/95 backdrop-blur-md border-neutral-700/50"
+          : "bg-white/85 backdrop-blur-xl border-gray-200/50"
+      }`}
+    >
       <div className="relative flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
         <a href="#" className="flex items-center justify-center h-24">
           <img
-            src="/Full-Logo.png"
+            src={isScrolled ? "/White_Full_Logo.png" : "/Full-Logo.png"}
             alt="WarungHub"
-            className="h-full w-auto object-contain"
+            className="h-full w-auto object-contain transition-opacity duration-500"
           />
         </a>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <div
+          className={`hidden md:flex items-center gap-8 text-sm font-medium transition-colors duration-500 ${
+            isScrolled ? "text-gray-200" : "text-gray-600"
+          }`}
+        >
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="hover:text-[#4A7043] transition-colors"
+              className={`transition-colors duration-300 ${
+                isScrolled
+                  ? "hover:text-white"
+                  : "hover:text-[#4A7043]"
+              }`}
             >
               {item.label}
             </a>
@@ -45,7 +69,12 @@ export default function LandingNavbar() {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/login" className="text-sm font-medium text-[#4A7043]">
+            <Link
+              href="/login"
+              className={`text-sm font-medium transition-colors duration-500 ${
+                isScrolled ? "text-gray-200 hover:text-white" : "text-[#4A7043] hover:text-[#5A7B9A]"
+              }`}
+            >
               Sign In
             </Link>
             <Link
@@ -58,7 +87,11 @@ export default function LandingNavbar() {
           <button
             type="button"
             onClick={handleToggle}
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white/80 text-gray-600 shadow-sm transition hover:text-[#4A7043]"
+            className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border shadow-sm transition-all duration-500 ${
+              isScrolled
+                ? "border-slate-600 bg-slate-800/80 text-gray-200 hover:text-white"
+                : "border-gray-200 bg-white/80 text-gray-600 hover:text-[#4A7043]"
+            }`}
             aria-label="Toggle navigation menu"
             aria-expanded={isOpen}
           >
@@ -83,23 +116,45 @@ export default function LandingNavbar() {
         </div>
 
         {isOpen && (
-          <div className="absolute top-full right-6 mt-3 w-56 rounded-2xl border border-gray-100 bg-white/95 shadow-xl backdrop-blur">
-            <div className="flex flex-col p-4 text-sm font-medium text-gray-700">
+          <div
+            className={`absolute top-full right-6 mt-3 w-56 rounded-2xl border shadow-xl backdrop-blur transition-all duration-500 ${
+              isScrolled
+                ? "bg-slate-800/95 border-slate-600/50"
+                : "bg-white/95 border-gray-100"
+            }`}
+          >
+            <div
+              className={`flex flex-col p-4 text-sm font-medium transition-colors duration-500 ${
+                isScrolled ? "text-gray-200" : "text-gray-700"
+              }`}
+            >
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={handleClose}
-                  className="rounded-xl px-3 py-2 transition hover:bg-gray-50 hover:text-[#4A7043]"
+                  className={`rounded-xl px-3 py-2 transition ${
+                    isScrolled
+                      ? "hover:bg-slate-700/50 hover:text-white"
+                      : "hover:bg-gray-50 hover:text-[#4A7043]"
+                  }`}
                 >
                   {item.label}
                 </a>
               ))}
-              <div className="my-2 h-px w-full bg-gray-200" />
+              <div
+                className={`my-2 h-px w-full transition-colors duration-500 ${
+                  isScrolled ? "bg-slate-600" : "bg-gray-200"
+                }`}
+              />
               <Link
                 href="/login"
                 onClick={handleClose}
-                className="rounded-xl px-3 py-2 text-[#4A7043] transition hover:bg-gray-50"
+                className={`rounded-xl px-3 py-2 transition ${
+                  isScrolled
+                    ? "text-gray-200 hover:bg-slate-700/50 hover:text-white"
+                    : "text-[#4A7043] hover:bg-gray-50"
+                }`}
               >
                 Sign In
               </Link>
