@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import LandingNavbar from "../components/navigation/LandingNavbar";
 import GlobeStatsSection from "../components/globe/GlobeStatsSection";
+import AnimateOnScroll from "../components/animation/AnimateOnScroll";
 
 export default function LandingPage() {
   return (
@@ -128,7 +129,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="benefits" className="py-24 relative">
+      <AnimateOnScroll delay={150}>
+        <section id="benefits" className="py-24 relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl font-bold tracking-tight text-[#1a1a1a] mb-4">
@@ -186,9 +188,11 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimateOnScroll>
 
-      <section id="marketplace" className="py-24 border-y bg-gray-50/30 border-gray-200">
+      <AnimateOnScroll delay={300}>
+        <section id="marketplace" className="py-24 border-y bg-gray-50/30 border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <div>
@@ -294,9 +298,11 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimateOnScroll>
 
-      <section id="how-it-works" className="py-24">
+      <AnimateOnScroll delay={450}>
+        <section id="how-it-works" className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-semibold tracking-tight text-[#1a1a1a] mb-4">
@@ -351,11 +357,13 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimateOnScroll>
 
       <GlobeStatsSection />
 
-      <section className="overflow-hidden pt-32 pr-6 pb-32 pl-6 relative bg-gradient-to-b from-gray-50/60 via-[#4A7043]/5 to-[#5A7B9A]/5">
+      <AnimateOnScroll delay={300}>
+        <section className="overflow-hidden pt-32 pr-6 pb-32 pl-6 relative bg-gradient-to-b from-gray-50/60 via-[#4A7043]/5 to-[#5A7B9A]/5">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1a1a1a] mb-6">
             Ready to Scale Up?
@@ -379,7 +387,8 @@ export default function LandingPage() {
             *No hidden fees. Commission only when products are sold.
           </p>
         </div>
-      </section>
+        </section>
+      </AnimateOnScroll>
 
       <footer className="border-t pt-16 pb-8 bg-white border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
