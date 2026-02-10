@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import LandingNavbar from "../components/navigation/LandingNavbar";
+import GlobeStatsSection from "../components/globe/GlobeStatsSection";
 
 export default function LandingPage() {
   return (
@@ -352,53 +353,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] relative overflow-hidden text-white">
-        <div
-          className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 50%, white 0%, transparent 20%), radial-gradient(circle at 80% 50%, white 0%, transparent 20%)",
-          }}
-        ></div>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-semibold mb-2 tracking-tight">
-                1,250+
-              </div>
-              <div className="text-sm font-medium text-white/80">Active Sellers</div>
-            </div>
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-semibold mb-2 tracking-tight">
-                10K+
-              </div>
-              <div className="text-sm font-medium text-white/80">Total Products</div>
-            </div>
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-semibold mb-2 tracking-tight">
-                100K+
-              </div>
-              <div className="text-sm font-medium text-white/80">
-                Successful Transactions
-              </div>
-            </div>
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-semibold mb-2 tracking-tight flex items-center justify-center gap-1">
-                4.8
-                <span className="text-2xl text-[#D4AF37]">
-                  <Icon icon="solar:star-bold" />
-                </span>
-              </div>
-              <div className="text-sm font-medium text-white/80">
-                Average Rating
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <GlobeStatsSection />
 
-      <section className="overflow-hidden pt-32 pr-6 pb-32 pl-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#4A7043]/5 to-[#5A7B9A]/5 -z-10"></div>
+      <section className="overflow-hidden pt-32 pr-6 pb-32 pl-6 relative bg-gradient-to-b from-gray-50/60 via-[#4A7043]/5 to-[#5A7B9A]/5">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1a1a1a] mb-6">
             Ready to Scale Up?
