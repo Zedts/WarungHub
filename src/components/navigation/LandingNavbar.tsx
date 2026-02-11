@@ -56,7 +56,7 @@ export default function LandingNavbar() {
       >
         <a href="#" className="flex items-center justify-center h-16">
           <img
-            src={isDark ? "/White-F-Logo.png" : "/Full-Logo.png"}
+            src={isDark ? "/W-F-Logo.png" : "/Full-Logo.png"}
             alt="WarungHub"
             className="h-[75px] w-auto object-contain transition-opacity duration-500"
           />
