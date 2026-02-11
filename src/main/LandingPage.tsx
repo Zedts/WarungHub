@@ -115,7 +115,7 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                <div className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-green-50 text-white dark:bg-green-900/30 dark:text-white">
                   Active
                 </div>
               </div>

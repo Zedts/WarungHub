@@ -226,7 +226,7 @@ export default function LoginPage() {
               icon="solar:lock-password-linear"
             />
 
-            <div className="w-full text-right mb-6 px-1">
+            <div className="w-full text-center mb-6 px-1">
               <a
                 href="#"
                 className="text-xs font-semibold text-[#5A7B9A] hover:text-[#4A7043] transition-colors"
