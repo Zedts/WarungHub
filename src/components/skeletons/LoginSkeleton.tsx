@@ -1,46 +1,121 @@
+"use client";
+
+import { useTheme } from "../../context/ThemeContext";
+
 export default function LoginSkeleton() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
-    <div className="min-h-screen flex justify-center items-center bg-[#f1f5f9] animate-pulse">
+    <div
+      className={`min-h-screen flex justify-center items-center animate-pulse transition-colors duration-500 ${
+        isDark ? "bg-neutral-900" : "bg-[#f1f5f9]"
+      }`}
+    >
       {/* Background Blur */}
-      <div className="fixed inset-0 -z-10 bg-slate-200 blur-xl opacity-40" />
+      <div
+        className={`fixed inset-0 -z-10 blur-xl opacity-40 transition-colors duration-500 ${
+          isDark ? "bg-neutral-950" : "bg-slate-200"
+        }`}
+      />
 
       {/* Back Button Skeleton */}
-      <div className="absolute left-6 top-6 z-[300] h-10 w-24 bg-slate-200 rounded-xl" />
+      <div
+        className={`absolute left-6 top-6 z-[300] h-10 w-24 rounded-xl transition-colors duration-500 ${
+          isDark ? "bg-neutral-800" : "bg-slate-200"
+        }`}
+      />
 
       {/* Auth Container Skeleton */}
-      <div className="relative w-full max-w-[1100px] min-h-[750px] bg-white rounded-[30px] shadow-2xl overflow-hidden mx-6">
+      <div
+        className={`relative w-full max-w-[1100px] min-h-[750px] rounded-[30px] shadow-2xl overflow-hidden mx-6 transition-colors duration-500 ${
+          isDark ? "bg-neutral-900" : "bg-white"
+        }`}
+      >
         {/* Toggle Capsule */}
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-50">
-          <div className="h-12 w-64 bg-slate-200 rounded-full" />
+          <div
+            className={`h-12 w-64 rounded-full transition-colors duration-500 ${
+              isDark ? "bg-neutral-800" : "bg-slate-200"
+            }`}
+          />
         </div>
 
         {/* Left Form Section */}
         <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col items-center justify-center p-12">
           <div className="space-y-6 w-full max-w-sm">
             <div className="flex flex-col items-center space-y-3 mb-8">
-              <div className="h-14 w-14 bg-slate-200 rounded-2xl" />
-              <div className="h-7 w-48 bg-slate-200 rounded-lg" />
-              <div className="h-4 w-64 bg-slate-200 rounded" />
+              <div
+                className={`h-14 w-14 rounded-2xl transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
+              <div
+                className={`h-7 w-48 rounded-lg transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
+              <div
+                className={`h-4 w-64 rounded transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
             </div>
 
             <div className="space-y-4">
-              <div className="h-12 w-full bg-slate-200 rounded-xl" />
-              <div className="h-12 w-full bg-slate-200 rounded-xl" />
+              <div
+                className={`h-12 w-full rounded-xl transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
+              <div
+                className={`h-12 w-full rounded-xl transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
               <div className="flex items-center gap-2">
-                <div className="h-4 w-4 bg-slate-200 rounded" />
-                <div className="h-3 w-full bg-slate-200 rounded" />
+                <div
+                  className={`h-4 w-4 rounded transition-colors duration-500 ${
+                    isDark ? "bg-neutral-800" : "bg-slate-200"
+                  }`}
+                />
+                <div
+                  className={`h-3 w-full rounded transition-colors duration-500 ${
+                    isDark ? "bg-neutral-800" : "bg-slate-200"
+                  }`}
+                />
               </div>
-              <div className="h-12 w-full bg-slate-200 rounded-xl" />
+              <div
+                className={`h-12 w-full rounded-xl transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
             </div>
 
             <div className="relative">
-              <div className="h-px w-full bg-slate-200" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-20 bg-white flex items-center justify-center">
-                <div className="h-3 w-16 bg-slate-200 rounded" />
+              <div
+                className={`h-px w-full transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
+              <div
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-20 flex items-center justify-center transition-colors duration-500 ${
+                  isDark ? "bg-neutral-900" : "bg-white"
+                }`}
+              >
+                <div
+                  className={`h-3 w-16 rounded transition-colors duration-500 ${
+                    isDark ? "bg-neutral-800" : "bg-slate-200"
+                  }`}
+                />
               </div>
             </div>
 
-            <div className="h-11 w-full bg-slate-200 rounded-xl" />
+            <div
+              className={`h-11 w-full rounded-xl transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
           </div>
         </div>
 

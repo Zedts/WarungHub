@@ -1,19 +1,64 @@
+"use client";
+
+import { useTheme } from "../../context/ThemeContext";
+
 export default function LandingSkeleton() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
-    <div className="min-h-screen bg-[#FAFAFA] animate-pulse">
+    <div
+      className={`min-h-screen animate-pulse transition-colors duration-500 ${
+        isDark ? "bg-neutral-900" : "bg-[#FAFAFA]"
+      }`}
+    >
       {/* Navbar Skeleton */}
-      <div className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+      <div
+        className={`fixed top-0 w-full z-50 backdrop-blur-sm border-b transition-colors duration-500 ${
+          isDark
+            ? "bg-neutral-900/80 border-neutral-800"
+            : "bg-white/80 border-gray-100"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="h-8 w-32 bg-slate-200 rounded-lg" />
+          <div
+            className={`h-8 w-32 rounded-lg transition-colors duration-500 ${
+              isDark ? "bg-neutral-800" : "bg-slate-200"
+            }`}
+          />
           <div className="hidden md:flex gap-8">
-            <div className="h-4 w-16 bg-slate-200 rounded" />
-            <div className="h-4 w-16 bg-slate-200 rounded" />
-            <div className="h-4 w-20 bg-slate-200 rounded" />
-            <div className="h-4 w-24 bg-slate-200 rounded" />
+            <div
+              className={`h-4 w-16 rounded transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
+            <div
+              className={`h-4 w-16 rounded transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
+            <div
+              className={`h-4 w-20 rounded transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
+            <div
+              className={`h-4 w-24 rounded transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
           </div>
           <div className="flex gap-3">
-            <div className="hidden md:block h-10 w-24 bg-slate-200 rounded-xl" />
-            <div className="h-10 w-28 bg-slate-200 rounded-xl" />
+            <div
+              className={`hidden md:block h-10 w-24 rounded-xl transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
+            <div
+              className={`h-10 w-28 rounded-xl transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
           </div>
         </div>
       </div>
@@ -22,19 +67,51 @@ export default function LandingSkeleton() {
       <div className="pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 max-w-2xl">
-            <div className="h-8 w-48 bg-slate-200 rounded-full" />
-            <div className="h-16 w-full bg-slate-200 rounded-2xl" />
-            <div className="h-16 w-4/5 bg-slate-200 rounded-2xl" />
+            <div
+              className={`h-8 w-48 rounded-full transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
+            <div
+              className={`h-16 w-full rounded-2xl transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
+            <div
+              className={`h-16 w-4/5 rounded-2xl transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
             <div className="space-y-2">
-              <div className="h-4 w-full bg-slate-200 rounded" />
-              <div className="h-4 w-3/4 bg-slate-200 rounded" />
+              <div
+                className={`h-4 w-full rounded transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
+              <div
+                className={`h-4 w-3/4 rounded transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
             </div>
             <div className="flex gap-4">
-              <div className="h-12 w-40 bg-slate-200 rounded-xl" />
-              <div className="h-12 w-32 bg-slate-200 rounded-xl" />
+              <div
+                className={`h-12 w-40 rounded-xl transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
+              <div
+                className={`h-12 w-32 rounded-xl transition-colors duration-500 ${
+                  isDark ? "bg-neutral-800" : "bg-slate-200"
+                }`}
+              />
             </div>
           </div>
-          <div className="hidden lg:block h-[500px] bg-slate-200 rounded-2xl" />
+          <div
+            className={`hidden lg:block h-[500px] rounded-2xl transition-colors duration-500 ${
+              isDark ? "bg-neutral-800" : "bg-slate-200"
+            }`}
+          />
         </div>
       </div>
 
@@ -42,17 +119,48 @@ export default function LandingSkeleton() {
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 space-y-4">
-            <div className="h-10 w-96 bg-slate-200 rounded-xl mx-auto" />
-            <div className="h-4 w-64 bg-slate-200 rounded mx-auto" />
+            <div
+              className={`h-10 w-96 rounded-xl mx-auto transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
+            <div
+              className={`h-4 w-64 rounded mx-auto transition-colors duration-500 ${
+                isDark ? "bg-neutral-800" : "bg-slate-200"
+              }`}
+            />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="p-8 bg-white rounded-2xl border border-gray-100 space-y-4">
-                <div className="h-14 w-14 bg-slate-200 rounded-2xl" />
-                <div className="h-6 w-48 bg-slate-200 rounded" />
+              <div
+                key={i}
+                className={`p-8 rounded-2xl border space-y-4 transition-colors duration-500 ${
+                  isDark
+                    ? "bg-neutral-800/50 border-neutral-700"
+                    : "bg-white border-gray-100"
+                }`}
+              >
+                <div
+                  className={`h-14 w-14 rounded-2xl transition-colors duration-500 ${
+                    isDark ? "bg-neutral-900/50" : "bg-slate-200"
+                  }`}
+                />
+                <div
+                  className={`h-6 w-48 rounded transition-colors duration-500 ${
+                    isDark ? "bg-neutral-900/50" : "bg-slate-200"
+                  }`}
+                />
                 <div className="space-y-2">
-                  <div className="h-3 w-full bg-slate-200 rounded" />
-                  <div className="h-3 w-5/6 bg-slate-200 rounded" />
+                  <div
+                    className={`h-3 w-full rounded transition-colors duration-500 ${
+                      isDark ? "bg-neutral-900/50" : "bg-slate-200"
+                    }`}
+                  />
+                  <div
+                    className={`h-3 w-5/6 rounded transition-colors duration-500 ${
+                      isDark ? "bg-neutral-900/50" : "bg-slate-200"
+                    }`}
+                  />
                 </div>
               </div>
             ))}

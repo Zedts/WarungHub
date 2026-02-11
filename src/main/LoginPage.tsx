@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { AuthInput, AuthSocialButton, AuthToggleCapsule } from "../components/auth";
+import { useTheme } from "../context/ThemeContext";
 
 const BACKGROUND_IMAGE =
   "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/884dca69-4cd6-4c60-a150-c149e26556c2_3840w.webp";
@@ -14,6 +15,8 @@ type AuthMode = "login" | "register";
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { theme, toggleTheme, mounted } = useTheme();
+  const isDark = theme === "dark";
   const mode: AuthMode =
     searchParams.get("mode") === "register" ? "register" : "login";
 
@@ -23,37 +26,91 @@ export default function LoginPage() {
 
   const isRegister = mode === "register";
 
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex justify-center items-center overflow-x-hidden bg-[#f1f5f9]">
+        <div className="fixed inset-0 -z-10 bg-cover bg-center saturate-[1.5] blur-xl opacity-40" style={{ backgroundImage: `url('${BACKGROUND_IMAGE}')` }} />
+        <button type="button" onClick={() => router.push("/")} className="absolute left-6 top-6 z-[300] inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold shadow-lg backdrop-blur bg-white/90 text-slate-700"><Icon icon="solar:home-smile-bold" width={18} /><span className="hidden md:inline">Back</span></button>
+        <button type="button" className="absolute right-6 top-6 z-[300] inline-flex h-12 w-12 items-center justify-center rounded-full border shadow-lg backdrop-blur bg-white/85 border-gray-200/50"><Icon icon="solar:sun-bold" width={20} className="text-black" /></button>
+        <div className="auth-container"><div className="absolute top-8 left-1/2 -translate-x-1/2 h-12 w-64 bg-white rounded-full animate-pulse" /></div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex justify-center items-center bg-[#f1f5f9] overflow-x-hidden">
+    <div
+      className={`min-h-screen flex justify-center items-center overflow-x-hidden transition-colors duration-500 ${
+        isDark ? "bg-neutral-900" : "bg-[#f1f5f9]"
+      }`}
+    >
       <div
-        className="fixed inset-0 -z-10 bg-cover bg-center saturate-[1.5] blur-xl opacity-40"
+        className={`fixed inset-0 -z-10 bg-cover bg-center saturate-[1.5] blur-xl transition-opacity duration-500 ${
+          isDark ? "opacity-20 invert" : "opacity-40"
+        }`}
         style={{ backgroundImage: `url('${BACKGROUND_IMAGE}')` }}
       />
 
       <button
         type="button"
         onClick={() => router.push("/")}
-        className="absolute left-6 top-6 z-[300] inline-flex items-center gap-2 rounded-xl bg-white/90 px-4 py-2 text-sm font-semibold text-slate-700 shadow-lg shadow-slate-900/10 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white"
+        className={`absolute left-6 top-6 z-[300] inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold shadow-lg backdrop-blur transition hover:-translate-y-0.5 ${
+          isDark
+            ? "bg-neutral-800/90 text-gray-200 shadow-neutral-900/30 hover:bg-neutral-700"
+            : "bg-white/90 text-slate-700 shadow-slate-900/10 hover:bg-white"
+        }`}
         aria-label="Back to home"
       >
         <Icon icon="solar:home-smile-bold" width={18} />
         <span className="hidden md:inline">Back</span>
       </button>
 
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className={`absolute right-6 top-6 z-[300] inline-flex h-12 w-12 items-center justify-center rounded-full border shadow-lg backdrop-blur transition-all duration-500 ${
+          isDark
+            ? "bg-neutral-900/95 backdrop-blur-md border-neutral-700/50 shadow-neutral-900/50"
+            : "bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50"
+        }`}
+        aria-label="Toggle theme"
+      >
+        <Icon
+          icon={isDark ? "solar:sun-bold" : "solar:moon-bold"}
+          width={20}
+          className={isDark ? "text-white" : "text-black"}
+        />
+      </button>
+
       <div
-        className={`auth-container ${isRegister ? "right-panel-active" : ""}`}
+        className={`auth-container ${isRegister ? "right-panel-active" : ""} ${
+          isDark ? "dark" : ""
+        }`}
       >
         <AuthToggleCapsule mode={mode} onModeChange={toggleAuth} />
 
         <div className="auth-form-container auth-sign-up-container">
           <form className="w-full max-w-sm flex flex-col items-center mt-12">
-            <div className="mb-4 p-3 bg-green-50 rounded-2xl text-[#4A7043] shadow-sm">
+            <div
+              className={`mb-4 p-3 rounded-2xl shadow-sm transition-colors duration-500 ${
+                isDark
+                  ? "bg-green-900/30 text-green-400"
+                  : "bg-green-50 text-[#4A7043]"
+              }`}
+            >
               <Icon icon="solar:user-plus-bold" width={28} />
             </div>
-            <h1 className="text-2xl font-bold text-slate-800 mb-0.5">
+            <h1
+              className={`text-2xl font-bold mb-0.5 transition-colors duration-500 ${
+                isDark ? "text-gray-100" : "text-slate-800"
+              }`}
+            >
               Buat Akun Bisnis
             </h1>
-            <p className="text-sm text-slate-500 mb-6">
+            <p
+              className={`text-sm mb-6 transition-colors duration-500 ${
+                isDark ? "text-gray-400" : "text-slate-500"
+              }`}
+            >
               Mulai jualan online dalam hitungan menit.
             </p>
 
@@ -76,11 +133,13 @@ export default function LoginPage() {
               <input
                 type="checkbox"
                 id="terms"
-                className="mt-1 rounded border-gray-300 text-[#4A7043] focus:ring-[#4A7043]"
+                className="mt-1 rounded border-gray-300 text-[#4A7043] focus:ring-[#4A7043] dark:border-neutral-600 dark:bg-neutral-800"
               />
               <label
                 htmlFor="terms"
-                className="text-xs text-slate-500 text-left cursor-pointer"
+                className={`text-xs text-left cursor-pointer transition-colors duration-500 ${
+                  isDark ? "text-gray-400" : "text-slate-500"
+                }`}
               >
                 Saya menyetujui{" "}
                 <span className="text-[#4A7043] font-semibold">
@@ -103,10 +162,20 @@ export default function LoginPage() {
 
             <div className="relative w-full mb-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200" />
+                <div
+                  className={`w-full border-t transition-colors duration-500 ${
+                    isDark ? "border-neutral-700" : "border-gray-200"
+                  }`}
+                />
               </div>
               <div className="relative flex justify-center">
-                <span className="bg-white px-3 text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                <span
+                  className={`px-3 text-[10px] font-bold uppercase tracking-wider transition-colors duration-500 ${
+                    isDark
+                      ? "bg-neutral-900 text-gray-500"
+                      : "bg-white text-gray-400"
+                  }`}
+                >
                   Atau daftar dengan
                 </span>
               </div>
@@ -122,15 +191,29 @@ export default function LoginPage() {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4A7043] to-[#5A7B9A] flex items-center justify-center text-white shadow-lg shadow-[#4A7043]/20">
                 <Icon icon="solar:shop-2-bold" width={20} />
               </div>
-              <span className="text-xl font-bold tracking-tight text-slate-800">
+              <span
+                className={`text-xl font-bold tracking-tight transition-colors duration-500 ${
+                  isDark ? "text-gray-100" : "text-slate-800"
+                }`}
+              >
                 WarungHub
               </span>
             </div>
 
-            <h1 className="text-3xl font-bold text-slate-800 mb-1">
+            <h1
+              className={`text-3xl font-bold mb-1 transition-colors duration-500 ${
+                isDark ? "text-gray-100" : "text-slate-800"
+              }`}
+            >
               Selamat Datang
             </h1>
-            <p className="text-slate-500 mb-8">Masuk untuk mengelola toko Anda.</p>
+            <p
+              className={`mb-8 transition-colors duration-500 ${
+                isDark ? "text-gray-400" : "text-slate-500"
+              }`}
+            >
+              Masuk untuk mengelola toko Anda.
+            </p>
 
             <AuthInput
               type="email"
@@ -161,10 +244,20 @@ export default function LoginPage() {
 
             <div className="relative w-full mb-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200" />
+                <div
+                  className={`w-full border-t transition-colors duration-500 ${
+                    isDark ? "border-neutral-700" : "border-gray-200"
+                  }`}
+                />
               </div>
               <div className="relative flex justify-center">
-                <span className="bg-white px-3 text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                <span
+                  className={`px-3 text-[10px] font-bold uppercase tracking-wider transition-colors duration-500 ${
+                    isDark
+                      ? "bg-neutral-900 text-gray-500"
+                      : "bg-white text-gray-400"
+                  }`}
+                >
                   Atau masuk dengan
                 </span>
               </div>

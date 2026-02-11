@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { Icon } from "@iconify/react";
+import { useTheme } from "../../context/ThemeContext";
 
 const NAV_ITEMS = [
   { label: "Features", href: "#benefits" },
@@ -11,16 +13,8 @@ const NAV_ITEMS = [
 
 export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { theme, toggleTheme, mounted } = useTheme();
+  const isDark = theme === "dark";
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -30,26 +24,47 @@ export default function LandingNavbar() {
     setIsOpen(false);
   };
 
+  if (!mounted) {
+    return (
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+        <div className="relative flex h-16 px-6 items-center justify-between rounded-full border transition-all duration-500 shadow-lg bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50">
+          <a href="#" className="flex items-center justify-center h-16">
+            <img
+              src="/Full-Logo.png"
+              alt="WarungHub"
+              className="h-[75px] w-auto object-contain"
+            />
+          </a>
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3 opacity-0">
+              <div className="h-10 w-20 bg-gray-200 rounded animate-pulse" />
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 border-b transition-all duration-500 ease-in-out ${
-        isScrolled
-          ? "bg-neutral-900/95 backdrop-blur-md border-neutral-700/50"
-          : "bg-white/85 backdrop-blur-xl border-gray-200/50"
-      }`}
-    >
-      <div className="relative flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
-        <a href="#" className="flex items-center justify-center h-24">
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+      <div
+        className={`relative flex h-16 px-6 items-center justify-between rounded-full border transition-all duration-500 shadow-lg ${
+          isDark
+            ? "bg-neutral-900/95 backdrop-blur-md border-neutral-700/50 shadow-neutral-900/50"
+            : "bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50"
+        }`}
+      >
+        <a href="#" className="flex items-center justify-center h-16">
           <img
-            src={isScrolled ? "/White_Full_Logo.png" : "/Full-Logo.png"}
+            src={isDark ? "/White-F-Logo.png" : "/Full-Logo.png"}
             alt="WarungHub"
-            className="h-full w-auto object-contain transition-opacity duration-500"
+            className="h-[75px] w-auto object-contain transition-opacity duration-500"
           />
         </a>
 
         <div
           className={`hidden md:flex items-center gap-8 text-sm font-medium transition-colors duration-500 ${
-            isScrolled ? "text-gray-200" : "text-gray-600"
+            isDark ? "text-gray-200" : "text-gray-600"
           }`}
         >
           {NAV_ITEMS.map((item) => (
@@ -57,9 +72,7 @@ export default function LandingNavbar() {
               key={item.href}
               href={item.href}
               className={`transition-colors duration-300 ${
-                isScrolled
-                  ? "hover:text-white"
-                  : "hover:text-[#4A7043]"
+                isDark ? "hover:text-white" : "hover:text-[#4A7043]"
               }`}
             >
               {item.label}
@@ -72,7 +85,9 @@ export default function LandingNavbar() {
             <Link
               href="/login"
               className={`text-sm font-medium transition-colors duration-500 ${
-                isScrolled ? "text-gray-200 hover:text-white" : "text-[#4A7043] hover:text-[#5A7B9A]"
+                isDark
+                  ? "text-gray-200 hover:text-white"
+                  : "text-[#4A7043] hover:text-[#5A7B9A]"
               }`}
             >
               Sign In
@@ -83,14 +98,51 @@ export default function LandingNavbar() {
             >
               Get Started
             </Link>
+            
+            <div className={`h-8 w-px transition-colors duration-500 ${isDark ? "bg-neutral-700" : "bg-gray-200"}`} />
+            
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+                isDark
+                  ? "border-neutral-600 bg-neutral-800/50 hover:bg-neutral-700"
+                  : "border-gray-200 bg-white/80 hover:bg-gray-50"
+              }`}
+              aria-label="Toggle theme"
+            >
+              <Icon
+                icon={isDark ? "solar:sun-bold" : "solar:moon-bold"}
+                width={20}
+                className={isDark ? "text-white" : "text-black"}
+              />
+            </button>
           </div>
+
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+              isDark
+                ? "border-neutral-600 bg-neutral-800/80 hover:bg-neutral-700"
+                : "border-gray-200 bg-white/80 hover:bg-gray-50"
+            }`}
+            aria-label="Toggle theme"
+          >
+            <Icon
+              icon={isDark ? "solar:sun-bold" : "solar:moon-bold"}
+              width={20}
+              className={isDark ? "text-white" : "text-black"}
+            />
+          </button>
+
           <button
             type="button"
             onClick={handleToggle}
             className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border shadow-sm transition-all duration-500 ${
-              isScrolled
-                ? "border-slate-600 bg-slate-800/80 text-gray-200 hover:text-white"
-                : "border-gray-200 bg-white/80 text-gray-600 hover:text-[#4A7043]"
+              isDark
+                ? "border-neutral-600 bg-neutral-800/80 text-gray-200 hover:text-white hover:bg-neutral-700"
+                : "border-gray-200 bg-white/80 text-gray-600 hover:text-[#4A7043] hover:bg-gray-50"
             }`}
             aria-label="Toggle navigation menu"
             aria-expanded={isOpen}
@@ -117,15 +169,15 @@ export default function LandingNavbar() {
 
         {isOpen && (
           <div
-            className={`absolute top-full right-6 mt-3 w-56 rounded-2xl border shadow-xl backdrop-blur transition-all duration-500 ${
-              isScrolled
-                ? "bg-slate-800/95 border-slate-600/50"
+            className={`absolute top-full right-0 mt-3 w-56 rounded-2xl border shadow-xl backdrop-blur transition-all duration-500 ${
+              isDark
+                ? "bg-neutral-800/95 border-neutral-600/50"
                 : "bg-white/95 border-gray-100"
             }`}
           >
             <div
               className={`flex flex-col p-4 text-sm font-medium transition-colors duration-500 ${
-                isScrolled ? "text-gray-200" : "text-gray-700"
+                isDark ? "text-gray-200" : "text-gray-700"
               }`}
             >
               {NAV_ITEMS.map((item) => (
@@ -134,25 +186,26 @@ export default function LandingNavbar() {
                   href={item.href}
                   onClick={handleClose}
                   className={`rounded-xl px-3 py-2 transition ${
-                    isScrolled
-                      ? "hover:bg-slate-700/50 hover:text-white"
+                    isDark
+                      ? "hover:bg-neutral-700/50 hover:text-white"
                       : "hover:bg-gray-50 hover:text-[#4A7043]"
                   }`}
                 >
                   {item.label}
                 </a>
               ))}
+
               <div
                 className={`my-2 h-px w-full transition-colors duration-500 ${
-                  isScrolled ? "bg-slate-600" : "bg-gray-200"
+                  isDark ? "bg-neutral-600" : "bg-gray-200"
                 }`}
               />
               <Link
                 href="/login"
                 onClick={handleClose}
                 className={`rounded-xl px-3 py-2 transition ${
-                  isScrolled
-                    ? "text-gray-200 hover:bg-slate-700/50 hover:text-white"
+                  isDark
+                    ? "text-gray-200 hover:bg-neutral-700/50 hover:text-white"
                     : "text-[#4A7043] hover:bg-gray-50"
                 }`}
               >
@@ -172,3 +225,4 @@ export default function LandingNavbar() {
     </nav>
   );
 }
+
