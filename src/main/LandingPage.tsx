@@ -19,7 +19,7 @@ export default function LandingPage() {
         }`}
         style={{
           backgroundImage:
-            "url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/884dca69-4cd6-4c60-a150-c149e26556c2_3840w.webp)",
+            "url(/BG-Before.webp)",
           maskImage:
             "linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)",
           WebkitMaskImage:

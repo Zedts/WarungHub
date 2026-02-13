@@ -5,8 +5,6 @@ import { Icon } from "@iconify/react";
 import { AuthInput, AuthSocialButton, AuthToggleCapsule } from "../components/auth";
 import { useTheme } from "../context/ThemeContext";
 
-const BACKGROUND_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/884dca69-4cd6-4c60-a150-c149e26556c2_3840w.webp";
 const OVERLAY_IMAGE =
   "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop";
 
@@ -29,7 +27,6 @@ export default function LoginPage() {
   if (!mounted) {
     return (
       <div className="min-h-screen flex justify-center items-center overflow-x-hidden bg-[#f1f5f9]">
-        <div className="fixed inset-0 -z-10 bg-cover bg-center saturate-[1.5] blur-xl opacity-40" style={{ backgroundImage: `url('${BACKGROUND_IMAGE}')` }} />
         <button type="button" onClick={() => router.push("/")} className="absolute left-6 top-6 z-[300] inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold shadow-lg backdrop-blur bg-white/90 text-slate-700"><Icon icon="solar:home-smile-bold" width={18} /><span className="hidden md:inline">Back</span></button>
         <button type="button" className="absolute right-6 top-6 z-[300] inline-flex h-12 w-12 items-center justify-center rounded-full border shadow-lg backdrop-blur bg-white/85 border-gray-200/50"><Icon icon="solar:sun-bold" width={20} className="text-black" /></button>
         <div className="auth-container"><div className="absolute top-8 left-1/2 -translate-x-1/2 h-12 w-64 bg-white rounded-full animate-pulse" /></div>
@@ -43,13 +40,6 @@ export default function LoginPage() {
         isDark ? "bg-neutral-900" : "bg-[#f1f5f9]"
       }`}
     >
-      <div
-        className={`fixed inset-0 -z-10 bg-cover bg-center saturate-[1.5] blur-xl transition-opacity duration-500 ${
-          isDark ? "opacity-20 invert" : "opacity-40"
-        }`}
-        style={{ backgroundImage: `url('${BACKGROUND_IMAGE}')` }}
-      />
-
       <button
         type="button"
         onClick={() => router.push("/")}
