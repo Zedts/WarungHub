@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "../src/context/ThemeContext";
+import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider } from "@/src/context/ThemeContext";
+import { AuthProvider } from "@/src/context/AuthContext";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "WarungHub",
@@ -35,7 +38,21 @@ export default function RootLayout({
       </head>
       <body className="antialiased selection:bg-[#4A7043] selection:text-white" suppressHydrationWarning>
         <ThemeProvider>
-          {children}
+          <AuthProvider>
+            {children}
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import { Icon } from "@iconify/react";
 import { useTheme } from "../../context/ThemeContext";
+import { ChangeEvent } from "react";
 
 type AuthInputProps = {
   type?: "text" | "email" | "password";
@@ -9,6 +10,8 @@ type AuthInputProps = {
   icon?: string;
   id?: string;
   className?: string;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function AuthInput({
@@ -17,6 +20,8 @@ export default function AuthInput({
   icon = "solar:letter-linear",
   id,
   className = "",
+  value,
+  onChange,
 }: AuthInputProps) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
@@ -43,6 +48,8 @@ export default function AuthInput({
         id={id}
         type={type}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className={`border-none bg-transparent outline-none w-full text-sm font-medium placeholder:font-normal transition-colors duration-500 ${
           isDark
             ? "text-gray-200 placeholder:text-gray-500"

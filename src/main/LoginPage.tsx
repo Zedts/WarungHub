@@ -1,9 +1,12 @@
 "use client";
 
+import { useState, FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Icon } from "@iconify/react";
+import { toast } from "react-toastify";
 import { AuthInput, AuthSocialButton, AuthToggleCapsule } from "../components/auth";
 import { useTheme } from "../context/ThemeContext";
+import { useAuth } from "../context/AuthContext";
 
 const OVERLAY_IMAGE =
   "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop";
@@ -14,12 +17,68 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { theme, toggleTheme, mounted } = useTheme();
+  const { login, register } = useAuth();
   const isDark = theme === "dark";
   const mode: AuthMode =
     searchParams.get("mode") === "register" ? "register" : "login";
 
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+  const [registerForm, setRegisterForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    termsAccepted: false,
+  });
+
   const toggleAuth = (target: AuthMode) => {
     router.push(target === "register" ? "/login?mode=register" : "/login");
+  };
+
+  const handleLogin = (e: FormEvent) => {
+    e.preventDefault();
+    
+    if (!loginForm.email || !loginForm.password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    if (!loginForm.email.includes("@")) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    login(loginForm.email, loginForm.password);
+    toast.success("Welcome back! Redirecting to marketplace...");
+    setTimeout(() => router.push("/marketplace"), 1000);
+  };
+
+  const handleRegister = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (!registerForm.email || !registerForm.password || !registerForm.firstName) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    if (!registerForm.email.includes("@")) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    if (registerForm.password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+
+    if (!registerForm.termsAccepted) {
+      toast.error("Please accept the terms and conditions");
+      return;
+    }
+
+    register(registerForm.email, registerForm.password);
+    toast.success("Account created successfully! Redirecting...");
+    setTimeout(() => router.push("/marketplace"), 1000);
   };
 
   const isRegister = mode === "register";
@@ -79,7 +138,7 @@ export default function LoginPage() {
         <AuthToggleCapsule mode={mode} onModeChange={toggleAuth} />
 
         <div className="auth-form-container auth-sign-up-container">
-          <form className="w-full max-w-sm flex flex-col items-center mt-12">
+          <form onSubmit={handleRegister} className="w-full max-w-sm flex flex-col items-center mt-12">
             <div
               className={`mb-4 p-3 rounded-2xl shadow-sm transition-colors duration-500 ${
                 isDark
@@ -94,35 +153,53 @@ export default function LoginPage() {
                 isDark ? "text-gray-100" : "text-slate-800"
               }`}
             >
-              Buat Akun Bisnis
+              Create Business Account
             </h1>
             <p
               className={`text-sm mb-6 transition-colors duration-500 ${
                 isDark ? "text-gray-400" : "text-slate-500"
               }`}
             >
-              Mulai jualan online dalam hitungan menit.
+              Start selling online in minutes.
             </p>
 
             <div className="flex gap-3 w-full">
-              <AuthInput placeholder="Nama Depan" icon="" className="flex-1" />
-              <AuthInput placeholder="Nama Belakang" icon="" className="flex-1" />
+              <AuthInput
+                placeholder="First Name"
+                icon=""
+                className="flex-1"
+                value={registerForm.firstName}
+                onChange={(e) => setRegisterForm({ ...registerForm, firstName: e.target.value })}
+              />
+              <AuthInput
+                placeholder="Last Name"
+                icon=""
+                className="flex-1"
+                value={registerForm.lastName}
+                onChange={(e) => setRegisterForm({ ...registerForm, lastName: e.target.value })}
+              />
             </div>
             <AuthInput
               type="email"
-              placeholder="Email Bisnis"
+              placeholder="Business Email"
               icon="solar:letter-linear"
+              value={registerForm.email}
+              onChange={(e) => setRegisterForm({ ...registerForm, email: e.target.value })}
             />
             <AuthInput
               type="password"
-              placeholder="Buat Password"
+              placeholder="Create Password"
               icon="solar:lock-password-linear"
+              value={registerForm.password}
+              onChange={(e) => setRegisterForm({ ...registerForm, password: e.target.value })}
             />
 
             <div className="flex items-start gap-2 w-full mb-6 mt-1 px-1">
               <input
                 type="checkbox"
                 id="terms"
+                checked={registerForm.termsAccepted}
+                onChange={(e) => setRegisterForm({ ...registerForm, termsAccepted: e.target.checked })}
                 className="mt-1 rounded border-gray-300 text-[#4A7043] focus:ring-[#4A7043] dark:border-neutral-600 dark:bg-neutral-800"
               />
               <label
@@ -131,23 +208,23 @@ export default function LoginPage() {
                   isDark ? "text-gray-400" : "text-slate-500"
                 }`}
               >
-                Saya menyetujui{" "}
+                I agree to the{" "}
                 <span className="text-[#4A7043] font-semibold">
-                  Syarat & Ketentuan
+                  Terms & Conditions
                 </span>{" "}
-                serta{" "}
+                and{" "}
                 <span className="text-[#4A7043] font-semibold">
-                  Kebijakan Privasi
+                  Privacy Policy
                 </span>
                 .
               </label>
             </div>
 
             <button
-              type="button"
+              type="submit"
               className="w-full py-3.5 bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] text-white rounded-xl font-bold shadow-lg shadow-[#4A7043]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all mb-6"
             >
-              Daftar Sekarang
+              Register Now
             </button>
 
             <div className="relative w-full mb-6">
@@ -166,17 +243,17 @@ export default function LoginPage() {
                       : "bg-white text-gray-400"
                   }`}
                 >
-                  Atau daftar dengan
+                  Or register with
                 </span>
               </div>
             </div>
 
-            <AuthSocialButton label="Daftar dengan Google" />
+            <AuthSocialButton label="Register with Google" />
           </form>
         </div>
 
         <div className="auth-form-container auth-sign-in-container">
-          <form className="w-full max-w-sm flex flex-col items-center mt-8">
+          <form onSubmit={handleLogin} className="w-full max-w-sm flex flex-col items-center mt-8">
             <div className="mb-8 flex items-center gap-2">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4A7043] to-[#5A7B9A] flex items-center justify-center text-white shadow-lg shadow-[#4A7043]/20">
                 <Icon icon="solar:shop-2-bold" width={20} />
@@ -195,25 +272,29 @@ export default function LoginPage() {
                 isDark ? "text-gray-100" : "text-slate-800"
               }`}
             >
-              Selamat Datang
+              Welcome Back
             </h1>
             <p
               className={`mb-8 transition-colors duration-500 ${
                 isDark ? "text-gray-400" : "text-slate-500"
               }`}
             >
-              Masuk untuk mengelola toko Anda.
+              Sign in to manage your store.
             </p>
 
             <AuthInput
               type="email"
               placeholder="Email Address"
               icon="solar:letter-linear"
+              value={loginForm.email}
+              onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
             />
             <AuthInput
               type="password"
               placeholder="Password"
               icon="solar:lock-password-linear"
+              value={loginForm.password}
+              onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
             />
 
             <div className="w-full text-center mb-6 px-1">
@@ -221,15 +302,15 @@ export default function LoginPage() {
                 href="#"
                 className="text-xs font-semibold text-[#5A7B9A] hover:text-[#4A7043] transition-colors"
               >
-                Lupa Password?
+                Forgot Password?
               </a>
             </div>
 
             <button
-              type="button"
+              type="submit"
               className="w-full py-3.5 bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] text-white rounded-xl font-bold shadow-lg shadow-[#4A7043]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all mb-8"
             >
-              Masuk Akun
+              Sign In
             </button>
 
             <div className="relative w-full mb-6">
@@ -248,12 +329,12 @@ export default function LoginPage() {
                       : "bg-white text-gray-400"
                   }`}
                 >
-                  Atau masuk dengan
+                  Or sign in with
                 </span>
               </div>
             </div>
 
-            <AuthSocialButton label="Masuk dengan Google" />
+            <AuthSocialButton label="Sign in with Google" />
           </form>
         </div>
 

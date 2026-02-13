@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
+    "chart.js": "^4.5.1",
     "next": "^16.1.6",
+    "primereact": "^10.9.7",
     "react": "19.2.1",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "19.2.1",
+    "react-toastify": "^11.0.5",
     "three": "^0.182.0"
   },
   "devDependencies": {

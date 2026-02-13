@@ -19,7 +19,7 @@ export default function LandingPage() {
         }`}
         style={{
           backgroundImage:
-            "url(/BG-Before.webp)",
+            "url(/Background/BG-Before.webp)",
           maskImage:
             "linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)",
           WebkitMaskImage:

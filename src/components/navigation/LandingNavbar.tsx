@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useTheme } from "../../context/ThemeContext";
 
@@ -29,10 +30,13 @@ export default function LandingNavbar() {
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
         <div className="relative flex h-16 px-6 items-center justify-between rounded-full border transition-all duration-500 shadow-lg bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50">
           <a href="#" className="flex items-center justify-center h-16">
-            <img
+            <Image
               src="/Full-Logo.png"
               alt="WarungHub"
+              width={188}
+              height={75}
               className="h-[75px] w-auto object-contain"
+              priority
             />
           </a>
           <div className="flex items-center gap-3">
@@ -55,10 +59,13 @@ export default function LandingNavbar() {
         }`}
       >
         <a href="#" className="flex items-center justify-center h-16">
-          <img
+          <Image
             src={isDark ? "/W-F-Logo.png" : "/Full-Logo.png"}
             alt="WarungHub"
+            width={188}
+            height={75}
             className="h-[75px] w-auto object-contain transition-opacity duration-500"
+            priority
           />
         </a>
 

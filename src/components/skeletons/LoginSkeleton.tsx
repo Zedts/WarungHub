@@ -8,17 +8,10 @@ export default function LoginSkeleton() {
 
   return (
     <div
-      className={`min-h-screen flex justify-center items-center animate-pulse transition-colors duration-500 ${
+      className={`min-h-screen flex justify-center items-center overflow-x-hidden animate-pulse transition-colors duration-500 ${
         isDark ? "bg-neutral-900" : "bg-[#f1f5f9]"
       }`}
     >
-      {/* Background Blur */}
-      <div
-        className={`fixed inset-0 -z-10 blur-xl opacity-40 transition-colors duration-500 ${
-          isDark ? "bg-neutral-950" : "bg-slate-200"
-        }`}
-      />
-
       {/* Back Button Skeleton */}
       <div
         className={`absolute left-6 top-6 z-[300] h-10 w-24 rounded-xl transition-colors duration-500 ${
@@ -26,146 +19,103 @@ export default function LoginSkeleton() {
         }`}
       />
 
-      {/* Auth Container Skeleton */}
+      {/* Theme Toggle Skeleton */}
       <div
-        className={`relative w-full max-w-[1100px] min-h-[750px] rounded-[30px] shadow-2xl overflow-hidden mx-6 transition-colors duration-500 ${
-          isDark ? "bg-neutral-900" : "bg-white"
+        className={`absolute right-6 top-6 z-[300] h-12 w-12 rounded-full border transition-colors duration-500 ${
+          isDark ? "bg-neutral-900/95 border-neutral-700/50" : "bg-white/85 border-gray-200/50"
         }`}
+      />
+
+      {/* Auth Container */}
+      <div
+        className={`auth-container ${isDark ? "dark" : ""}`}
       >
-        {/* Toggle Capsule */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-50">
+        {/* Toggle Capsule Skeleton */}
+        <div className="absolute top-[30px] left-1/2 -translate-x-1/2 z-[200]">
           <div
-            className={`h-12 w-64 rounded-full transition-colors duration-500 ${
+            className={`h-[54px] w-[260px] rounded-[50px] transition-colors duration-500 ${
               isDark ? "bg-neutral-800" : "bg-slate-200"
             }`}
           />
         </div>
 
         {/* Left Form Section */}
-        <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col items-center justify-center p-12">
-          <div className="space-y-6 w-full max-w-sm">
-            <div className="flex flex-col items-center space-y-3 mb-8">
-              <div
-                className={`h-14 w-14 rounded-2xl transition-colors duration-500 ${
-                  isDark ? "bg-neutral-800" : "bg-slate-200"
-                }`}
-              />
-              <div
-                className={`h-7 w-48 rounded-lg transition-colors duration-500 ${
-                  isDark ? "bg-neutral-800" : "bg-slate-200"
-                }`}
-              />
-              <div
-                className={`h-4 w-64 rounded transition-colors duration-500 ${
-                  isDark ? "bg-neutral-800" : "bg-slate-200"
-                }`}
-              />
+        <div className="auth-form-container auth-sign-in-container">
+          <div className="w-full max-w-sm flex flex-col items-center mt-8">
+            {/* Logo + Brand */}
+            <div className="mb-8 flex items-center gap-2">
+              <div className={`w-10 h-10 rounded-xl ${isDark ? "bg-neutral-800" : "bg-slate-200"}`} />
+              <div className={`h-6 w-28 rounded-lg ${isDark ? "bg-neutral-800" : "bg-slate-200"}`} />
             </div>
 
-            <div className="space-y-4">
-              <div
-                className={`h-12 w-full rounded-xl transition-colors duration-500 ${
-                  isDark ? "bg-neutral-800" : "bg-slate-200"
-                }`}
-              />
-              <div
-                className={`h-12 w-full rounded-xl transition-colors duration-500 ${
-                  isDark ? "bg-neutral-800" : "bg-slate-200"
-                }`}
-              />
-              <div className="flex items-center gap-2">
-                <div
-                  className={`h-4 w-4 rounded transition-colors duration-500 ${
-                    isDark ? "bg-neutral-800" : "bg-slate-200"
-                  }`}
-                />
-                <div
-                  className={`h-3 w-full rounded transition-colors duration-500 ${
-                    isDark ? "bg-neutral-800" : "bg-slate-200"
-                  }`}
-                />
-              </div>
-              <div
-                className={`h-12 w-full rounded-xl transition-colors duration-500 ${
-                  isDark ? "bg-neutral-800" : "bg-slate-200"
-                }`}
-              />
-            </div>
+            {/* Title */}
+            <div className={`h-8 w-48 rounded-lg mb-1 ${isDark ? "bg-neutral-800" : "bg-slate-200"}`} />
+            <div className={`h-4 w-52 rounded mb-8 ${isDark ? "bg-neutral-800" : "bg-slate-200"}`} />
 
-            <div className="relative">
-              <div
-                className={`h-px w-full transition-colors duration-500 ${
-                  isDark ? "bg-neutral-800" : "bg-slate-200"
-                }`}
-              />
-              <div
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-20 flex items-center justify-center transition-colors duration-500 ${
-                  isDark ? "bg-neutral-900" : "bg-white"
-                }`}
-              >
-                <div
-                  className={`h-3 w-16 rounded transition-colors duration-500 ${
-                    isDark ? "bg-neutral-800" : "bg-slate-200"
-                  }`}
-                />
+            {/* Email Input */}
+            <div className={`h-[52px] w-full rounded-[14px] mb-3 ${isDark ? "bg-neutral-800/50 border border-neutral-700" : "bg-[#f8fafc] border border-[#e2e8f0]"}`} />
+            {/* Password Input */}
+            <div className={`h-[52px] w-full rounded-[14px] mb-3 ${isDark ? "bg-neutral-800/50 border border-neutral-700" : "bg-[#f8fafc] border border-[#e2e8f0]"}`} />
+
+            {/* Forgot Password */}
+            <div className={`h-3 w-28 rounded mb-6 mx-auto ${isDark ? "bg-neutral-800" : "bg-slate-200"}`} />
+
+            {/* Submit Button */}
+            <div className="h-[52px] w-full rounded-xl bg-gradient-to-r from-[#4A7043]/30 to-[#5A7B9A]/30 mb-8" />
+
+            {/* Divider */}
+            <div className="relative w-full mb-6">
+              <div className={`h-px w-full ${isDark ? "bg-neutral-700" : "bg-gray-200"}`} />
+              <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 ${isDark ? "bg-neutral-900" : "bg-white"}`}>
+                <div className={`h-3 w-20 rounded ${isDark ? "bg-neutral-800" : "bg-slate-200"}`} />
               </div>
             </div>
 
-            <div
-              className={`h-11 w-full rounded-xl transition-colors duration-500 ${
-                isDark ? "bg-neutral-800" : "bg-slate-200"
-              }`}
-            />
+            {/* Social Button */}
+            <div className={`h-[46px] w-full rounded-[14px] ${isDark ? "bg-neutral-800/50 border border-neutral-700" : "border border-[#e2e8f0]"}`} />
           </div>
         </div>
 
         {/* Right Overlay Section */}
-        <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden">
-          <div className="relative w-full h-full bg-gradient-to-br from-[#4A7043] to-[#5A7B9A] p-12 flex flex-col justify-center items-center text-center">
-            <div className="space-y-6 max-w-md">
-              <div className="h-10 w-64 bg-white/20 rounded-xl mx-auto" />
-              <div className="space-y-2">
-                <div className="h-4 w-full bg-white/10 rounded" />
-                <div className="h-4 w-5/6 bg-white/10 rounded mx-auto" />
-                <div className="h-4 w-4/6 bg-white/10 rounded mx-auto" />
-              </div>
-              <div className="grid grid-cols-3 gap-4 pt-8">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="flex flex-col items-center space-y-2">
-                    <div className="h-10 w-10 bg-white/10 rounded-xl" />
-                    <div className="h-3 w-16 bg-white/10 rounded" />
+        <div className="auth-overlay-container">
+          <div className="auth-overlay">
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#4A7043]/90 to-[#5A7B9A]/80" />
+
+            <div className="auth-overlay-panel auth-overlay-right">
+              <div className="relative z-10 w-full max-w-xs space-y-6">
+                {/* Glass Card */}
+                <div className="auth-glass-card auth-floating p-4 flex items-center gap-3 w-56 mx-auto border-l border-white/40">
+                  <div className="w-10 h-10 rounded-xl bg-white/15 shrink-0" />
+                  <div className="space-y-1.5">
+                    <div className="h-3 w-24 bg-white/20 rounded" />
+                    <div className="h-2 w-20 bg-white/10 rounded" />
                   </div>
-                ))}
+                </div>
+
+                {/* Title */}
+                <div className="h-8 w-52 bg-white/20 rounded-xl mx-auto" />
+                {/* Description */}
+                <div className="space-y-2">
+                  <div className="h-3 w-full bg-white/10 rounded" />
+                  <div className="h-3 w-5/6 bg-white/10 rounded mx-auto" />
+                </div>
+
+                {/* 2-col Info Grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="bg-white/10 p-4 rounded-2xl border border-white/10">
+                      <div className="h-7 w-7 bg-white/15 rounded-lg mb-3" />
+                      <div className="h-4 w-14 bg-white/15 rounded mb-1" />
+                      <div className="h-2 w-20 bg-white/10 rounded" />
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <div className="h-12 w-36 bg-white/20 rounded-xl mx-auto" />
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile View - Full Form */}
-      <div className="md:hidden w-full h-full flex items-center justify-center p-6">
-        <div className="w-full max-w-sm space-y-6 bg-white rounded-3xl p-8 shadow-2xl">
-          <div className="flex flex-col items-center space-y-3 mb-8">
-            <div className="h-14 w-14 bg-slate-200 rounded-2xl" />
-            <div className="h-7 w-48 bg-slate-200 rounded-lg" />
-            <div className="h-4 w-64 bg-slate-200 rounded" />
-          </div>
-
-          <div className="space-y-4">
-            <div className="h-12 w-full bg-slate-200 rounded-xl" />
-            <div className="h-12 w-full bg-slate-200 rounded-xl" />
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 bg-slate-200 rounded" />
-              <div className="h-3 w-full bg-slate-200 rounded" />
-            </div>
-            <div className="h-12 w-full bg-slate-200 rounded-xl" />
-          </div>
-
-          <div className="relative">
-            <div className="h-px w-full bg-slate-200" />
-          </div>
-
-          <div className="h-11 w-full bg-slate-200 rounded-xl" />
         </div>
       </div>
     </div>

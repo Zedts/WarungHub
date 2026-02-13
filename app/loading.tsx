@@ -1,25 +1,25 @@
 "use client";
 
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import LandingSkeleton from "../src/components/skeletons/LandingSkeleton";
-import LoginSkeleton from "../src/components/skeletons/LoginSkeleton";
+import { usePathname } from "next/navigation";
+import LandingSkeleton from "@/src/components/skeletons/LandingSkeleton";
+import LoginSkeleton from "@/src/components/skeletons/LoginSkeleton";
+import MarketplaceSkeleton from "@/src/components/skeletons/MarketplaceSkeleton";
+import DashboardSkeleton from "@/src/components/skeletons/DashboardSkeleton";
 
-function LoadingContent() {
-  const searchParams = useSearchParams();
-  const view = searchParams.get("view");
+export default function Loading() {
+  const pathname = usePathname();
 
-  if (view === "login") {
+  if (pathname === "/login") {
     return <LoginSkeleton />;
   }
 
-  return <LandingSkeleton />;
-}
+  if (pathname === "/marketplace") {
+    return <MarketplaceSkeleton />;
+  }
 
-export default function Loading() {
-  return (
-    <Suspense fallback={<LandingSkeleton />}>
-      <LoadingContent />
-    </Suspense>
-  );
+  if (pathname === "/dashboard") {
+    return <DashboardSkeleton />;
+  }
+
+  return <LandingSkeleton />;
 }
