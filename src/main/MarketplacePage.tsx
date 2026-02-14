@@ -194,7 +194,7 @@ export default function MarketplacePage() {
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
-            Recommendations For You
+            Explore Categories
           </h2>
 
           <div className="flex gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide">

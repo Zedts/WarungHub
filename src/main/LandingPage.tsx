@@ -80,8 +80,8 @@ export default function LandingPage() {
                     : "text-gray-600 bg-white border-gray-200 hover:text-[#4A7043] hover:bg-gray-50"
                 }`}
               >
-                <Icon icon="solar:play-circle-linear" width={20} />
-                <span>View Demo</span>
+                <Icon icon="solar:shop-2-linear" width={20} />
+                <span>View Marketplace</span>
               </button>
             </div>
           </div>
