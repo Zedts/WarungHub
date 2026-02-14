@@ -13,7 +13,7 @@ export default function Loading() {
     return <LoginSkeleton />;
   }
 
-  if (pathname === "/marketplace") {
+  if (pathname === "/marketplace" || pathname === "/marketplace-demo") {
     return <MarketplaceSkeleton />;
   }
 
