@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode, useRef } from "react";
 
 type Theme = "light" | "dark";
 
@@ -12,16 +12,25 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") return "light";
+  return (localStorage.getItem("warunghub-theme") as Theme) || "light";
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  const isInitialMount = useRef(true);
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
-    setMounted(true);
-    const savedTheme = (localStorage.getItem("warunghub-theme") as Theme) || "light";
-    setTheme(savedTheme);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setMounted(true);
+    }
   }, []);
 
+  // Update DOM and localStorage when theme changes
   useEffect(() => {
     if (mounted) {
       document.documentElement.classList.toggle("dark", theme === "dark");

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./globals.css";
 import { ThemeProvider } from "@/src/context/ThemeContext";
 import { AuthProvider } from "@/src/context/AuthContext";
 import { ToastContainer } from "react-toastify";
@@ -43,14 +43,11 @@ export default function RootLayout({
             <ToastContainer
               position="bottom-right"
               autoClose={3000}
-              hideProgressBar={false}
+              hideProgressBar={true}
+              closeButton={true}
               newestOnTop
               closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
               pauseOnHover
-              theme="light"
             />
           </AuthProvider>
         </ThemeProvider>
