@@ -1,6 +1,7 @@
 import LandingPage from "@/src/main/LandingPage";
 import LoginPage from "@/src/main/LoginPage";
 import MarketplacePage from "@/src/main/MarketplacePage";
+import MarketplaceDemoPage from "@/src/main/MarketplaceDemoPage";
 import DashboardPage from "@/src/main/DashboardPage";
 
 type SearchParams = {
@@ -21,6 +22,10 @@ export default async function Page({ searchParams }: PageProps) {
 
   if (view === "marketplace") {
     return <MarketplacePage />;
+  }
+
+  if (view === "marketplace-demo") {
+    return <MarketplaceDemoPage />;
   }
 
   if (view === "dashboard") {

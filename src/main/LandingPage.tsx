@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import LandingNavbar from "../components/navigation/LandingNavbar";
+import LandingNavbar from "../components/Landing/LandingNavbar";
 import GlobeStatsSection from "../components/globe/GlobeStatsSection";
 import AnimateOnScroll from "../components/animation/AnimateOnScroll";
 import { useTheme } from "../context/ThemeContext";
@@ -73,7 +73,8 @@ export default function LandingPage() {
                 <span>Start Scaling Now</span>
                 <Icon icon="solar:arrow-right-linear" width={20} />
               </Link>
-              <button
+              <Link
+                href="/marketplace-demo"
                 className={`transition-all flex hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 text-sm font-semibold border rounded-xl pt-4 pr-8 pb-4 pl-8 gap-x-2 gap-y-2 items-center justify-center ${
                   isDark
                     ? "text-gray-200 bg-neutral-800 border-neutral-700 hover:text-white hover:bg-neutral-700"
@@ -82,7 +83,7 @@ export default function LandingPage() {
               >
                 <Icon icon="solar:shop-2-linear" width={20} />
                 <span>View Marketplace</span>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -422,13 +423,13 @@ export default function LandingPage() {
                 Explore curated products from top-tier verified vendors as a customer.
               </p>
             </div>
-            <a
-              href="#"
+            <Link
+              href="/marketplace-demo"
               className="text-[#4A7043] font-medium flex items-center gap-1 hover:gap-2 transition-all"
             >
               View All
               <Icon icon="solar:arrow-right-linear" width={16} />
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

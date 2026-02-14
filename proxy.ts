@@ -22,6 +22,11 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
+  if (pathname === "/marketplace-demo") {
+    url.searchParams.set("view", "marketplace-demo");
+    return NextResponse.rewrite(url);
+  }
+
   return NextResponse.next();
 }
 
@@ -29,6 +34,7 @@ export const config = {
   matcher: [
     "/login",
     "/marketplace",
+    "/marketplace-demo",
     "/dashboard",
   ],
 };
