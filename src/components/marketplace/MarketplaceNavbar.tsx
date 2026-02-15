@@ -24,7 +24,7 @@ export default function MarketplaceNavbar() {
 
   return (
     <nav
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl rounded-full border shadow-2xl backdrop-blur-xl transition-all duration-500 ${
+      className={`fixed z-50 border shadow-2xl backdrop-blur-xl transition-all duration-500 top-0 left-0 right-0 w-full md:top-6 md:left-1/2 md:-translate-x-1/2 md:w-[95%] md:max-w-6xl md:rounded-full ${
         isDark
           ? "bg-neutral-900/95 border-neutral-700/50 shadow-neutral-900/50"
           : "bg-white/95 border-white/50 shadow-gray-200/50"
@@ -250,7 +250,7 @@ export default function MarketplaceNavbar() {
                       }}
                       className={`rounded-xl px-3 py-2 transition text-left flex items-center gap-2 ${
                         isDark
-                          ? "text-gray-200 hover:bg-neutral-700/50 hover:text-white"
+                          ? "text-[#4A7043] hover:bg-neutral-700/50 hover:text-white"
                           : "text-[#4A7043] hover:bg-gray-50"
                       }`}
                     >

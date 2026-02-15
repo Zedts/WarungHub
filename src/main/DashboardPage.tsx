@@ -117,16 +117,17 @@ export default function DashboardPage() {
         onMobileClose={() => setIsMobileSidebarOpen(false)}
       />
 
+      <DashboardNavbar
+        onMobileMenuToggle={() => setIsMobileSidebarOpen(true)}
+        sidebarCollapsed={sidebarCollapsed}
+      />
+
       <div
         className={`transition-all duration-300 ml-0 md:ml-20 ${
           sidebarCollapsed ? "md:ml-20" : "md:ml-64"
         }`}
       >
-        <DashboardNavbar
-          onMobileMenuToggle={() => setIsMobileSidebarOpen(true)}
-        />
-
-        <main className="p-4 md:p-6 lg:p-8">
+        <main className="pt-24 px-4 pb-4 md:pt-28 md:px-6 md:pb-6 lg:px-8 lg:pb-8">
           {/* KPIs */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {kpis.map((kpi, index) => (

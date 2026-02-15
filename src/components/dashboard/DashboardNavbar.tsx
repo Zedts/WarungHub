@@ -7,15 +7,18 @@ import { useTheme } from "../../context/ThemeContext";
 
 type DashboardNavbarProps = {
   onMobileMenuToggle: () => void;
+  sidebarCollapsed: boolean;
 };
 
-export default function DashboardNavbar({ onMobileMenuToggle }: DashboardNavbarProps) {
+export default function DashboardNavbar({ onMobileMenuToggle, sidebarCollapsed }: DashboardNavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
   return (
     <nav
-      className={`h-20 border-b backdrop-blur-xl flex items-center justify-between px-6 transition-colors duration-500 ${
+      className={`fixed top-0 right-0 h-20 border-b backdrop-blur-xl flex items-center justify-between px-6 transition-all duration-300 z-30 left-0 md:left-20 ${
+        !sidebarCollapsed ? "md:left-64" : ""
+      } ${
         isDark
           ? "bg-neutral-900/95 border-neutral-700/50"
           : "bg-white/95 border-gray-200/50"

@@ -21,25 +21,25 @@ export default function MarketplaceDemoNavbar() {
 
   if (!mounted) {
     return (
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
-        <div className="relative flex h-16 px-6 items-center justify-between rounded-full border transition-all duration-500 shadow-lg bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50">
-          <Link href="/" className="flex items-center justify-center h-16">
+      <nav className="fixed z-50 top-0 left-0 right-0 w-full md:top-6 md:left-1/2 md:-translate-x-1/2 md:w-[95%] md:max-w-6xl">
+        <div className="relative flex px-6 py-3 items-center justify-between border transition-all duration-500 shadow-2xl bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50 md:rounded-full">
+          <Link href="/" className="flex items-center justify-center h-14">
             {/* Mobile Logo */}
             <Image
               src="/S-Logo.png"
               alt="WarungHub"
-              width={50}
-              height={50}
-              className="h-[50px] w-auto object-contain md:hidden"
+              width={45}
+              height={45}
+              className="h-[45px] w-auto object-contain md:hidden"
               priority
             />
             {/* Desktop Logo */}
             <Image
               src="/F-Logo.png"
               alt="WarungHub"
-              width={188}
-              height={75}
-              className="h-[75px] w-auto object-contain hidden md:block"
+              width={150}
+              height={60}
+              className="h-[60px] w-auto object-contain hidden md:block"
               priority
             />
           </Link>
@@ -54,58 +54,62 @@ export default function MarketplaceDemoNavbar() {
   }
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+    <nav className="fixed z-50 top-0 left-0 right-0 w-full md:top-6 md:left-1/2 md:-translate-x-1/2 md:w-[95%] md:max-w-6xl">
       <div
-        className={`relative flex h-16 px-6 items-center justify-between gap-4 rounded-full border transition-all duration-500 shadow-lg ${
+        className={`relative flex px-6 py-3 items-center justify-between border transition-all duration-500 shadow-2xl md:rounded-full ${
           isDark
             ? "bg-neutral-900/95 backdrop-blur-md border-neutral-700/50 shadow-neutral-900/50"
             : "bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50"
         }`}
       >
-        <Link href="/" className="flex items-center justify-center h-16 flex-shrink-0">
+        <Link href="/" className="flex items-center justify-center h-14 flex-shrink-0">
           {/* Mobile Logo */}
           <Image
             src={isDark ? "/W-S-Logo.png" : "/S-Logo.png"}
             alt="WarungHub"
-            width={50}
-            height={50}
-            className="h-[50px] w-auto object-contain transition-opacity duration-500 md:hidden"
+            width={45}
+            height={45}
+            className="h-[45px] w-auto object-contain transition-opacity duration-500 md:hidden"
             priority
           />
           {/* Desktop Logo */}
           <Image
             src={isDark ? "/W-F-Logo.png" : "/F-Logo.png"}
             alt="WarungHub"
-            width={188}
-            height={75}
-            className="h-[75px] w-auto object-contain transition-opacity duration-500 hidden md:block"
+            width={150}
+            height={60}
+            className="h-[60px] w-auto object-contain transition-opacity duration-500 hidden md:block"
             priority
           />
         </Link>
 
-        {/* Search Bar - Responsive */}
-        <div className="flex-1 max-w-md">
-          <div className="relative">
+        {/* Search Bar */}
+        <div className="flex-1 min-w-0 mx-3 sm:mx-6">
+          <div
+            className={`flex items-center gap-2 sm:gap-3 rounded-full border px-3 sm:px-4 py-2 transition-all duration-300 ${
+              isDark
+                ? "border-neutral-700 bg-neutral-800/50 focus-within:border-[#4A7043]"
+                : "border-gray-200 bg-gray-50 focus-within:border-[#4A7043]"
+            }`}
+          >
             <Icon
               icon="solar:magnifer-linear"
+              className={`shrink-0 ${isDark ? "text-gray-500" : "text-gray-400"}`}
               width={18}
-              className={`absolute left-4 top-1/2 -translate-y-1/2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
             />
             <input
               type="text"
               placeholder="Search products..."
-              className={`w-full h-10 pl-11 pr-4 rounded-full text-sm transition-all duration-300 focus:outline-none focus:ring-2 ${
+              className={`bg-transparent outline-none w-full text-sm ${
                 isDark
-                  ? "bg-neutral-800/50 border border-neutral-700 text-gray-200 placeholder-gray-500 focus:ring-[#4A7043]/50"
-                  : "bg-white/80 border border-gray-200 text-gray-800 placeholder-gray-400 focus:ring-[#4A7043]/30"
+                  ? "text-gray-200 placeholder:text-gray-500"
+                  : "text-slate-700 placeholder:text-gray-400"
               }`}
             />
           </div>
         </div>
 
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/login"
