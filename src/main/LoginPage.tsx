@@ -86,7 +86,7 @@ export default function LoginPage() {
   if (!mounted) {
     return (
       <div className="min-h-screen flex justify-center items-center overflow-x-hidden bg-[#f1f5f9]">
-        <button type="button" onClick={() => router.back()} className="absolute left-6 top-6 z-[300] inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold shadow-lg backdrop-blur bg-white/90 text-slate-700"><Icon icon="solar:home-smile-bold" width={18} /><span className="hidden md:inline">Back</span></button>
+        <button type="button" onClick={() => router.push('/')} className="absolute left-6 top-6 z-[300] inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold shadow-lg backdrop-blur bg-white/90 text-slate-700"><Icon icon="solar:home-smile-bold" width={18} /><span className="hidden md:inline">Back</span></button>
         <button type="button" className="absolute right-6 top-6 z-[300] inline-flex h-12 w-12 items-center justify-center rounded-full border shadow-lg backdrop-blur bg-white/85 border-gray-200/50"><Icon icon="solar:sun-bold" width={20} className="text-black" /></button>
         <div className="auth-container"><div className="absolute top-8 left-1/2 -translate-x-1/2 h-12 w-64 bg-white rounded-full animate-pulse" /></div>
       </div>
@@ -101,7 +101,7 @@ export default function LoginPage() {
     >
       <button
         type="button"
-        onClick={() => router.back()}
+        onClick={() => router.push('/')}
         className={`absolute left-6 top-6 z-[300] inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold shadow-lg backdrop-blur transition hover:-translate-y-0.5 ${
           isDark
             ? "bg-neutral-800/90 text-gray-200 shadow-neutral-900/30 hover:bg-neutral-700"

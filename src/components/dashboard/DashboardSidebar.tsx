@@ -16,9 +16,11 @@ type MenuItem = {
 type SidebarProps = {
   isCollapsed: boolean;
   onToggle: () => void;
+  isMobileOpen: boolean;
+  onMobileClose: () => void;
 };
 
-export default function DashboardSidebar({ isCollapsed, onToggle }: SidebarProps) {
+export default function DashboardSidebar({ isCollapsed, onToggle, isMobileOpen, onMobileClose }: SidebarProps) {
   const router = useRouter();
   const { theme } = useTheme();
   const { logout, user } = useAuth();
@@ -48,20 +50,48 @@ export default function DashboardSidebar({ isCollapsed, onToggle }: SidebarProps
   };
 
   return (
-    <aside
-      className={`fixed left-0 top-0 h-screen border-r backdrop-blur-xl transition-all duration-300 z-40 ${
-        isCollapsed ? "w-20" : "w-64"
-      } ${
-        isDark
-          ? "bg-neutral-900/95 border-neutral-700/50"
-          : "bg-white/95 border-gray-200/50"
-      }`}
-    >
+    <>
+      {/* Mobile Overlay */}
+      {isMobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden transition-opacity duration-300"
+          onClick={onMobileClose}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed left-0 top-0 h-screen border-r backdrop-blur-xl transition-all duration-300 z-40 ${
+          isCollapsed ? "w-20" : "w-64"
+        } ${
+          isDark
+            ? "bg-neutral-900/95 border-neutral-700/50"
+            : "bg-white/95 border-gray-200/50"
+        } ${
+          isMobileOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0`}
+      >
       <div className="flex flex-col h-full p-4">
-        {/* Toggle Button */}
+        {/* Mobile Close Button */}
+        <button
+          onClick={onMobileClose}
+          className={`md:hidden absolute right-4 top-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+            isDark
+              ? "bg-neutral-800 hover:bg-neutral-700 text-gray-400"
+              : "bg-gray-100 hover:bg-gray-200 text-gray-600"
+          }`}
+          aria-label="Close menu"
+        >
+          <Icon
+            icon="solar:close-circle-bold"
+            width={20}
+          />
+        </button>
+
+        {/* Toggle Button (Desktop) */}
         <button
           onClick={onToggle}
-          className={`absolute -right-3 top-6 w-6 h-6 rounded-full border flex items-center justify-center transition-all ${
+          className={`hidden md:flex absolute -right-3 top-6 w-6 h-6 rounded-full border items-center justify-center transition-all ${
             isDark
               ? "bg-neutral-800 border-neutral-700 hover:bg-neutral-700"
               : "bg-white border-gray-200 hover:bg-gray-50"
@@ -184,5 +214,6 @@ export default function DashboardSidebar({ isCollapsed, onToggle }: SidebarProps
         </div>
       </div>
     </aside>
+    </>
   );
 }

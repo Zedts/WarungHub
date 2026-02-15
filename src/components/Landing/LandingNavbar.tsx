@@ -30,12 +30,22 @@ export default function LandingNavbar() {
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
         <div className="relative flex h-16 px-6 items-center justify-between rounded-full border transition-all duration-500 shadow-lg bg-white/85 backdrop-blur-xl border-gray-200/50 shadow-gray-200/50">
           <a href="#" className="flex items-center justify-center h-16">
+            {/* Mobile Logo */}
             <Image
-              src="/Full-Logo.png"
+              src="/S-Logo.png"
+              alt="WarungHub"
+              width={50}
+              height={50}
+              className="h-[50px] w-auto object-contain md:hidden"
+              priority
+            />
+            {/* Desktop Logo */}
+            <Image
+              src="/F-Logo.png"
               alt="WarungHub"
               width={188}
               height={75}
-              className="h-[75px] w-auto object-contain"
+              className="h-[75px] w-auto object-contain hidden md:block"
               priority
             />
           </a>
@@ -59,12 +69,22 @@ export default function LandingNavbar() {
         }`}
       >
         <a href="#" className="flex items-center justify-center h-16">
+          {/* Mobile Logo */}
           <Image
-            src={isDark ? "/W-F-Logo.png" : "/Full-Logo.png"}
+            src={isDark ? "/W-S-Logo.png" : "/S-Logo.png"}
+            alt="WarungHub"
+            width={50}
+            height={50}
+            className="h-[50px] w-auto object-contain transition-opacity duration-500 md:hidden"
+            priority
+          />
+          {/* Desktop Logo */}
+          <Image
+            src={isDark ? "/W-F-Logo.png" : "/F-Logo.png"}
             alt="WarungHub"
             width={188}
             height={75}
-            className="h-[75px] w-auto object-contain transition-opacity duration-500"
+            className="h-[75px] w-auto object-contain transition-opacity duration-500 hidden md:block"
             priority
           />
         </a>
@@ -128,23 +148,6 @@ export default function LandingNavbar() {
 
           <button
             type="button"
-            onClick={toggleTheme}
-            className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
-              isDark
-                ? "border-neutral-600 bg-neutral-800/80 hover:bg-neutral-700"
-                : "border-gray-200 bg-white/80 hover:bg-gray-50"
-            }`}
-            aria-label="Toggle theme"
-          >
-            <Icon
-              icon={isDark ? "solar:sun-bold" : "solar:moon-bold"}
-              width={20}
-              className={isDark ? "text-white" : "text-black"}
-            />
-          </button>
-
-          <button
-            type="button"
             onClick={handleToggle}
             className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border shadow-sm transition-all duration-500 ${
               isDark
@@ -171,6 +174,26 @@ export default function LandingNavbar() {
                 }`}
               />
             </span>
+          </button>
+
+          {/* Divider - Mobile */}
+          <div className={`md:hidden h-8 w-px transition-colors duration-500 ${isDark ? "bg-neutral-700" : "bg-gray-200"}`} />
+
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+              isDark
+                ? "border-neutral-600 bg-neutral-800/80 hover:bg-neutral-700"
+                : "border-gray-200 bg-white/80 hover:bg-gray-50"
+            }`}
+            aria-label="Toggle theme"
+          >
+            <Icon
+              icon={isDark ? "solar:sun-bold" : "solar:moon-bold"}
+              width={20}
+              className={isDark ? "text-white" : "text-black"}
+            />
           </button>
         </div>
 

@@ -26,6 +26,7 @@ export default function DashboardPage() {
   const { isAuthenticated, isLoggingOut } = useAuth();
   const isDark = theme === "dark";
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   const periodOptions = [
     { label: "Last 7 Days", value: "7d" },
@@ -112,16 +113,20 @@ export default function DashboardPage() {
       <DashboardSidebar
         isCollapsed={sidebarCollapsed}
         onToggle={() => setSidebarCollapsed((prev) => !prev)}
+        isMobileOpen={isMobileSidebarOpen}
+        onMobileClose={() => setIsMobileSidebarOpen(false)}
       />
 
       <div
-        className={`transition-all duration-300 ${
-          sidebarCollapsed ? "ml-20" : "ml-64"
+        className={`transition-all duration-300 ml-0 md:ml-20 ${
+          sidebarCollapsed ? "md:ml-20" : "md:ml-64"
         }`}
       >
-        <DashboardNavbar />
+        <DashboardNavbar
+          onMobileMenuToggle={() => setIsMobileSidebarOpen(true)}
+        />
 
-        <main className="p-8">
+        <main className="p-4 md:p-6 lg:p-8">
           {/* KPIs */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {kpis.map((kpi, index) => (
@@ -178,7 +183,7 @@ export default function DashboardPage() {
                   : "bg-white/80 border-gray-200"
               }`}
             >
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
                 <div>
                   <h3
                     className={`text-lg font-bold transition-colors duration-500 ${
@@ -213,17 +218,17 @@ export default function DashboardPage() {
                   }}
                   pt={{
                     root: {
-                      className: `text-sm rounded-xl border outline-none cursor-pointer px-3 py-2 transition-all flex items-center gap-2 ${
+                      className: `text-sm rounded-xl border outline-none cursor-pointer px-3 py-2 transition-all flex items-center justify-between gap-3 ${
                         isDark
                           ? "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10"
                           : "bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100"
                       }`,
                     },
                     input: {
-                      className: "text-sm font-medium cursor-pointer",
+                      className: "text-sm font-medium cursor-pointer flex-shrink-0",
                     },
                     trigger: {
-                      className: `ml-1 transition-colors ${
+                      className: `transition-colors ${
                         isDark ? "text-gray-400" : "text-gray-500"
                       }`,
                     },
