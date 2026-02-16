@@ -3,7 +3,7 @@ import { Product, Category } from "../types/product";
 export const categories: Category[] = [
   { id: "all", name: "All Products", icon: "solar:shop-2-bold" },
   { id: "food", name: "Food & Beverages", icon: "solar:cup-hot-bold" },
-  { id: "fashion", name: "Fashion", icon: "solar:tshirt-bold" },
+  { id: "fashion", name: "Fashion", icon: "solar:tag-price-bold" },
   { id: "electronics", name: "Electronics", icon: "solar:laptop-bold" },
   { id: "home", name: "Home & Living", icon: "solar:home-2-bold" },
   { id: "beauty", name: "Beauty & Health", icon: "solar:heart-bold" },
