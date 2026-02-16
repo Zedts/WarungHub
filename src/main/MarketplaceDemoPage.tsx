@@ -182,7 +182,7 @@ export default function MarketplaceDemoPage() {
             Explore Categories
           </h2>
 
-          <div className="flex gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="flex gap-3 mb-8 overflow-x-auto pt-2 pb-2 scrollbar-hide">
             {categories.map((cat) => (
               <button
                 key={cat.id}
