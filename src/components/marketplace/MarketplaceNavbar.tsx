@@ -147,18 +147,6 @@ export default function MarketplaceNavbar() {
                       isDark ? "hover:bg-neutral-700" : "hover:bg-gray-50"
                     }`}
                   >
-                    <Icon icon="solar:settings-linear" width={18} />
-                    <span className="text-sm font-medium">Settings</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowProfileMenu(false);
-                      handleLogout();
-                    }}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-b-2xl transition-colors text-red-500 ${
-                      isDark ? "hover:bg-neutral-700" : "hover:bg-gray-50"
-                    }`}
-                  >
                     <Icon icon="solar:logout-2-linear" width={18} />
                     <span className="text-sm font-medium">Logout</span>
                   </button>
@@ -284,20 +272,6 @@ export default function MarketplaceNavbar() {
                     >
                       <Icon icon="solar:user-linear" width={18} />
                       Profile
-                    </button>
-                    <button
-                      onClick={() => {
-                        setShowMenu(false);
-                        toast.info("Coming Soon");
-                      }}
-                      className={`rounded-xl px-3 py-2 transition text-left flex items-center gap-2 ${
-                        isDark
-                          ? "text-gray-200 hover:bg-neutral-700/50 hover:text-white"
-                          : "text-gray-700 hover:bg-gray-50"
-                      }`}
-                    >
-                      <Icon icon="solar:settings-linear" width={18} />
-                      Settings
                     </button>
                     <button
                       onClick={() => {
