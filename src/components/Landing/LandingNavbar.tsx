@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useTheme } from "../../context/ThemeContext";
+import { useAuth } from "../../context/AuthContext";
 
 const NAV_ITEMS = [
   { label: "Features", href: "#benefits" },
@@ -15,6 +16,7 @@ const NAV_ITEMS = [
 export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme, mounted } = useTheme();
+  const { isAuthenticated } = useAuth();
   const isDark = theme === "dark";
 
   const handleToggle = () => {
@@ -109,22 +111,34 @@ export default function LandingNavbar() {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/login"
-              className={`text-sm font-medium transition-colors duration-500 ${
-                isDark
-                  ? "text-gray-200 hover:text-white"
-                  : "text-[#4A7043] hover:text-[#5A7B9A]"
-              }`}
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/login?mode=register"
-              className="bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] text-sm font-semibold px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-[#4A7043]/30 hover:-translate-y-0.5 transition-all duration-300 text-white"
-            >
-              Get Started
-            </Link>
+            {isAuthenticated ? (
+              <Link
+                href="/marketplace"
+                className="bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] text-sm font-semibold px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-[#4A7043]/30 hover:-translate-y-0.5 transition-all duration-300 text-white flex items-center gap-2"
+              >
+                <Icon icon="solar:shop-2-bold" width={18} />
+                Go to Market
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className={`text-sm font-medium transition-colors duration-500 ${
+                    isDark
+                      ? "text-gray-200 hover:text-white"
+                      : "text-[#4A7043] hover:text-[#5A7B9A]"
+                  }`}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/login?mode=register"
+                  className="bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] text-sm font-semibold px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-[#4A7043]/30 hover:-translate-y-0.5 transition-all duration-300 text-white"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
             
             <div className={`h-8 w-px transition-colors duration-500 ${isDark ? "bg-neutral-700" : "bg-gray-200"}`} />
             
@@ -230,24 +244,37 @@ export default function LandingNavbar() {
                   isDark ? "bg-neutral-600" : "bg-gray-200"
                 }`}
               />
-              <Link
-                href="/login"
-                onClick={handleClose}
-                className={`rounded-xl px-3 py-2 transition ${
-                  isDark
-                    ? "text-gray-200 hover:bg-neutral-700/50 hover:text-white"
-                    : "text-[#4A7043] hover:bg-gray-50"
-                }`}
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/login?mode=register"
-                onClick={handleClose}
-                className="rounded-xl px-3 py-2 font-semibold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] shadow-sm transition hover:shadow-md"
-              >
-                Get Started
-              </Link>
+              {isAuthenticated ? (
+                <Link
+                  href="/marketplace"
+                  onClick={handleClose}
+                  className="rounded-xl px-3 py-2 font-semibold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] shadow-sm transition hover:shadow-md flex items-center gap-2"
+                >
+                  <Icon icon="solar:shop-2-bold" width={18} />
+                  Go to Market
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    onClick={handleClose}
+                    className={`rounded-xl px-3 py-2 transition ${
+                      isDark
+                        ? "text-gray-200 hover:bg-neutral-700/50 hover:text-white"
+                        : "text-[#4A7043] hover:bg-gray-50"
+                    }`}
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/login?mode=register"
+                    onClick={handleClose}
+                    className="rounded-xl px-3 py-2 font-semibold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] shadow-sm transition hover:shadow-md"
+                  >
+                    Get Started
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

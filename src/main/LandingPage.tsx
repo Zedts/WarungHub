@@ -6,9 +6,11 @@ import LandingNavbar from "../components/Landing/LandingNavbar";
 import GlobeStatsSection from "../components/globe/GlobeStatsSection";
 import AnimateOnScroll from "../components/animation/AnimateOnScroll";
 import { useTheme } from "../context/ThemeContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function LandingPage() {
   const { theme } = useTheme();
+  const { isAuthenticated } = useAuth();
   const isDark = theme === "dark";
 
   return (
@@ -67,14 +69,14 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/login?mode=register"
+                href={isAuthenticated ? "/dashboard" : "/login?mode=register"}
                 className="shadow-[#4A7043]/20 hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 transition-all flex text-sm font-semibold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] rounded-xl pt-4 pr-8 pb-4 pl-8 shadow-xl gap-x-2 gap-y-2 items-center justify-center"
               >
                 <span>Start Scaling Now</span>
                 <Icon icon="solar:arrow-right-linear" width={20} />
               </Link>
               <Link
-                href="/marketplace-demo"
+                href={isAuthenticated ? "/marketplace" : "/marketplace-demo"}
                 className={`transition-all flex hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 text-sm font-semibold border rounded-xl pt-4 pr-8 pb-4 pl-8 gap-x-2 gap-y-2 items-center justify-center ${
                   isDark
                     ? "text-gray-200 bg-neutral-800 border-neutral-700 hover:text-white hover:bg-neutral-700"
@@ -82,7 +84,7 @@ export default function LandingPage() {
                 }`}
               >
                 <Icon icon="solar:shop-2-linear" width={20} />
-                <span>View Marketplace</span>
+                <span>{isAuthenticated ? "Go to Marketplace" : "View Marketplace"}</span>
               </Link>
             </div>
           </div>
@@ -424,7 +426,7 @@ export default function LandingPage() {
               </p>
             </div>
             <Link
-              href="/marketplace-demo"
+              href={isAuthenticated ? "/marketplace" : "/marketplace-demo"}
               className="text-[#4A7043] font-medium flex items-center gap-1 hover:gap-2 transition-all"
             >
               View All
@@ -779,7 +781,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
-              href="/login?mode=register"
+              href={isAuthenticated ? "/dashboard" : "/login?mode=register"}
               className="hover:shadow-2xl hover:shadow-[#4A7043]/30 hover:-translate-y-1 transition-all text-base font-bold text-white bg-gradient-to-r from-[#4A7043] to-[#5A7B9A] rounded-xl pt-5 pr-10 pb-5 pl-10 text-center"
             >
               Sign Up Now – Free!
