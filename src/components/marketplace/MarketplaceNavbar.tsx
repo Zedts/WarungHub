@@ -131,7 +131,7 @@ export default function MarketplaceNavbar() {
                     setShowProfileMenu(false);
                     toast.info("Coming Soon");
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-t-2xl transition-colors ${
+                  className={`w-full flex items-center rounded-2xl gap-3 px-4 py-3 rounded-t-2xl transition-colors ${
                     isDark ? "hover:bg-neutral-700" : "hover:bg-gray-50"
                   }`}
                 >
