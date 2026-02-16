@@ -119,39 +119,41 @@ export default function MarketplaceNavbar() {
 
               {/* Profile Dropdown */}
               {showProfileMenu && (
-                <div
-                  className={`absolute right-0 mt-2 w-48 rounded-2xl border shadow-xl backdrop-blur-xl transition-all duration-300 ${
-                    isDark
-                      ? "bg-neutral-800/95 border-neutral-700"
-                      : "bg-white/95 border-gray-200"
+              <div
+                className={`absolute right-0 mt-2 w-48 rounded-2xl border shadow-xl backdrop-blur-xl transition-all duration-300 ${
+                  isDark
+                    ? "bg-neutral-800/95 border-neutral-700"
+                    : "bg-white/95 border-gray-200"
+                }`}
+              >
+                <button
+                  onClick={() => {
+                    setShowProfileMenu(false);
+                    toast.info("Coming Soon");
+                  }}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-t-2xl transition-colors ${
+                    isDark ? "hover:bg-neutral-700" : "hover:bg-gray-50"
                   }`}
                 >
-                  <button
-                    onClick={() => {
-                      setShowProfileMenu(false);
-                      toast.info("Coming Soon");
-                    }}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-t-2xl transition-colors ${
-                      isDark ? "hover:bg-neutral-700" : "hover:bg-gray-50"
-                    }`}
-                  >
-                    <Icon icon="solar:user-linear" width={18} />
-                    <span className="text-sm font-medium">Profile</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowProfileMenu(false);
-                      toast.info("Coming Soon");
-                    }}
-                    className={`w-full flex items-center gap-3 px-4 py-3 transition-colors ${
-                      isDark ? "hover:bg-neutral-700" : "hover:bg-gray-50"
-                    }`}
-                  >
-                    <Icon icon="solar:logout-2-linear" width={18} />
-                    <span className="text-sm font-medium">Logout</span>
-                  </button>
-                </div>
-              )}
+                  <Icon icon="solar:user-linear" width={18} />
+                  <span className="text-sm font-medium">Profile</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setShowProfileMenu(false);
+                    toast.info("Coming Soon");
+                  }}
+                  className={`w-full flex items-center rounded-2xl gap-3 px-4 py-3 transition-colors ${
+                    isDark 
+                      ? "hover:bg-neutral-700 text-red-400" 
+                      : "hover:bg-gray-50 text-red-600"
+                  }`}
+                >
+                  <Icon icon="solar:logout-2-linear" width={18} />
+                  <span className="text-sm font-medium">Logout</span>
+                </button>
+              </div>
+            )}
             </div>
 
             {/* My Warung Button */}
