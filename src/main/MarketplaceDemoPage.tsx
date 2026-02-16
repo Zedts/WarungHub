@@ -44,8 +44,8 @@ export default function MarketplaceDemoPage() {
 
       <main className="max-w-7xl mx-auto px-4 pt-28 pb-20 space-y-10">
         {/* Hero Banner */}
-        <div className="relative h-[280px] md:h-[360px] rounded-3xl overflow-hidden group">
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#1a1a1a]/80 via-[#1a1a1a]/40 to-transparent" />
+        <div className="relative h-[240px] sm:h-[280px] md:h-[340px] lg:h-[360px] rounded-2xl md:rounded-3xl overflow-hidden group">
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#1a1a1a]/85 via-[#1a1a1a]/50 to-transparent" />
           <Image
             src="https://plus.unsplash.com/premium_photo-1699025726754-8da11fa3fb58?q=80&w=1371&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Marketplace Hero"
@@ -54,24 +54,24 @@ export default function MarketplaceDemoPage() {
             unoptimized
             priority
           />
-          <div className="relative z-20 h-full flex flex-col justify-center px-8 md:px-16 max-w-2xl">
-            <span className="inline-block px-3 py-1 bg-[#D4AF37] text-white text-xs font-bold rounded-full w-fit mb-4 uppercase tracking-wider">
+          <div className="relative z-20 h-full flex flex-col justify-center px-5 sm:px-8 md:px-12 lg:px-16 max-w-2xl">
+            <span className="inline-block px-2.5 py-1 bg-[#D4AF37] text-white text-[10px] sm:text-xs font-bold rounded-full w-fit mb-3 sm:mb-4 uppercase tracking-wider">
               Featured
             </span>
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight leading-tight">
               Support Local,{" "}
               <span className="text-[#86efac]">Shop Smart</span>
             </h1>
-            <p className="text-gray-200 text-sm md:text-base mb-8 max-w-md font-light">
+            <p className="text-gray-200 text-xs sm:text-sm md:text-base mb-5 sm:mb-6 md:mb-8 max-w-md font-light leading-relaxed">
               Discover authentic Indonesian products from verified UMKM sellers.
               Quality craftsmanship, delivered nationwide.
             </p>
             <button
               onClick={() => toast.info("Coming Soon")}
-              className="bg-white text-[#4A7043] px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors w-fit flex items-center gap-2 shadow-lg"
+              className="bg-white text-[#4A7043] px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold hover:bg-gray-100 transition-colors w-fit flex items-center gap-2 shadow-lg"
             >
               Explore Now
-              <Icon icon="solar:arrow-right-linear" width={20} />
+              <Icon icon="solar:arrow-right-linear" width={18} className="sm:w-5" />
             </button>
           </div>
         </div>
